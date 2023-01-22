@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1logf2o" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.7.1">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1logf2o" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.7.1">
   <bpmn:process id="order-process" name="Ordering Process" isExecutable="true">
     <bpmn:startEvent id="START_ORDER">
       <bpmn:outgoing>SequenceFlow_1vzuxpv</bpmn:outgoing>
@@ -60,7 +60,9 @@
       <bpmn:outgoing>Flow_1wmpim9</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_0qaptpb" sourceRef="Gateway_0eilv44" targetRef="TASK_FINISH_ORDER" />
-    <bpmn:sequenceFlow id="Flow_1wmpim9" sourceRef="Gateway_0eilv44" targetRef="Gateway_1fzcu2b" />
+    <bpmn:sequenceFlow id="Flow_1wmpim9" name="Payment FAILED" sourceRef="Gateway_0eilv44" targetRef="Gateway_1fzcu2b">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">TASK_PAYMENT = "FAILED"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1vzknn8" sourceRef="Gateway_1fzcu2b" targetRef="Activity_0px3dgu" />
     <bpmn:sequenceFlow id="Flow_00zfk67" sourceRef="Gateway_1fzcu2b" targetRef="Activity_1o8tfzp" />
     <bpmn:sequenceFlow id="Flow_1blppsf" sourceRef="Activity_0px3dgu" targetRef="Gateway_1j4cqav" />
@@ -141,6 +143,9 @@
       <bpmndi:BPMNEdge id="Flow_1wmpim9_di" bpmnElement="Flow_1wmpim9">
         <di:waypoint x="838" y="145" />
         <di:waypoint x="838" y="218" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="847" y="179" width="85" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1vzknn8_di" bpmnElement="Flow_1vzknn8">
         <di:waypoint x="810" y="243" />
